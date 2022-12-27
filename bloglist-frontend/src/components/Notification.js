@@ -1,4 +1,4 @@
-const Notification = ({ notification, removeNotification }) => {
+const Notification = ({ notification }) => {
   const { message, type } = notification
   if (message === null || message === '') {
     return null
@@ -16,7 +16,6 @@ const Notification = ({ notification, removeNotification }) => {
       </div>
     )
   }
-  removeNotification()
 }
 
 export default Notification

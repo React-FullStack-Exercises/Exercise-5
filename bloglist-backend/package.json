@@ -6,8 +6,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node index",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
-    "build:ui": "del /S /Q build && cd ../bloglist-frontend && npm run build && robocopy build ../bloglist-backend/build /s",
-    "deploy": "npm run build:ui && npm run dev",
+    "build": "del /S /Q build && cd ../bloglist-frontend && npm run build && robocopy build ../bloglist-backend/build /s",
+    "deploy": "npm run build && npm run dev",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit"
   },
   "author": "Keshab Manni",

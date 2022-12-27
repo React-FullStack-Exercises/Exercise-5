@@ -6,6 +6,11 @@ const User = require('../models/user')
 
 //  GET
 blogsRouter.get('/', async (request, response) => {
+  const decodedUser = request.user
+  if(!decodedUser.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
   const blogs = await Blog
     .find({}).populate('user', { username: 1, name: 1 })
   response.json(blogs)
@@ -72,8 +77,7 @@ blogsRouter.put('/:id', async (request, response) => {
     request.params.id,
     { likes },
     { new: true, runValidators: true, context: 'query' }
-  )
-
+  ).populate('user', { username: 1, name: 1 })
   response.status(204).json(updatedBlog)
 })
 
