@@ -86,7 +86,7 @@ const App = () => {
       setUser(null)
     }
   }
-  
+
   const addBlog = async (blogObject) => {
     try {
       blogFormRef.current.toggleVisibility()

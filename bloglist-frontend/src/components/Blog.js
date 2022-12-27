@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 const Blog = ({ blog, handleLike, handleDelete }) => {
   const blogStyle = {
@@ -19,7 +19,7 @@ const Blog = ({ blog, handleLike, handleDelete }) => {
   }
 
   const askDelete = () => {
-    if(window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) { 
+    if(window.confirm(`Remove blog ${blog.title} by ${blog.author}`)) {
       handleDelete()
     }
   }
