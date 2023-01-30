@@ -22,12 +22,22 @@ const App = () => {
 
   const blogFormRef = useRef()
 
-  useEffect(() => {
+  const fetchStoredUser = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
-    if (loggedUserJSON) {
+    if(loggedUserJSON){
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token)
+      return user
+    }
+    else {
+      return null
+    }
+  }
+
+  useEffect(() => {
+    const loggedUser = fetchStoredUser()
+    if (loggedUser) {
+      setUser(loggedUser)
+      blogService.setToken(loggedUser.token)
     }
   }, [])
 
@@ -47,7 +57,11 @@ const App = () => {
         handleNotification('error while fetching blogs', 'error')
       }
     }
-    fetchData()
+
+    if(fetchStoredUser()){
+      // console.log('fetching blogs')
+      fetchData()
+    }
   }, [])
 
   const handleNotification = (message, type) => {
@@ -131,15 +145,13 @@ const App = () => {
   const loginForm = () => {
     return (
       <div>
-        <Togglable buttonLabel='login'>
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-        </Togglable>
+        <LoginForm
+          username={username}
+          password={password}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+          handleSubmit={handleLogin}
+        />
       </div>
     )
   }
