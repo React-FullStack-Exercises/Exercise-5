@@ -62,7 +62,7 @@ const App = () => {
       // console.log('fetching blogs')
       fetchData()
     }
-  }, [])
+  }, [user])
 
   const handleNotification = (message, type) => {
     setNotification({ message: message, type: type })
@@ -157,7 +157,7 @@ const App = () => {
   }
 
   const blogForm = () => (
-    <Togglable buttonLabel='create new blog' ref={blogFormRef}>
+    <Togglable buttonLabel='create new blog' buttonId='create-blog-button' ref={blogFormRef}>
       <BlogForm createBlog={addBlog} />
     </Togglable>
   )
